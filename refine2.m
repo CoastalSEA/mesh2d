@@ -135,6 +135,8 @@ function [vert,conn,tria,tnum] = refine2(varargin)
 %   Last updated    : 13/02/2020
 %-----------------------------------------------------------
 
+%   lines 1096 and 1099 modified to correct colon operand use (iht; 13/5/25)
+
     node = []; PSLG = []; part = {}; opts = [] ;
     hfun = []; harg = {};
 
@@ -1093,11 +1095,11 @@ function [vert,conn,tria,tnum,iter] = ...
 
     %------------------------------------- split constraints
         idx1 = ...
-       (1:size(new1))'+size(vert,1) ;
+       (1:size(new1,1))'+size(vert,1) ;              %modified iht 13/5/25
 
         idx2 = ...
-       (1:size(new2))'+size(new1,1) ...
-                      +size(vert,1) ;
+       (1:size(new2,1))'+size(new1,1)+size(vert,1) ; %modified iht 13/5/25
+                      
 
         cnew = [conn( ref1,1), idx1
                 conn( ref1,2), idx1];
